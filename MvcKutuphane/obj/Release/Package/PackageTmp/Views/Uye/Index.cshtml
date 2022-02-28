@@ -1,0 +1,56 @@
+﻿@using MvcKutuphane.Models.Entity
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<TBLUYELER>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Üyeler</h2>
+@using (Html.BeginForm("Index", "Uye", FormMethod.Get))
+{
+    <div style="margin-bottom:15px; margin-top:15px;">
+        <b>Aranacak Üye Adını Girin:&nbsp;</b> @Html.TextBox("p")
+        <input type="submit" value="Ara" /> @*type=submit ile girilen değer sunucuya yollanır*@
+    </div>
+}
+<table class="table table-hover">
+    <tr style="background-color:#f1f1f1">
+        <th>ÜYE ID</th>
+        <th>ÜYE ADI</th>
+        <th>ÜYE SOYADI</th>
+        <th>MAİL</th>
+        <th>KULLANICI ADI</th>
+        <th>ŞİFRE</th>
+        <th>TELEFON</th>
+        <th>OKUL</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+        <th>ÜYE KİTAP GEÇMİŞİ</th>
+    </tr>
+    @foreach (var uye in Model)
+    {
+        <tr>
+            <td>@uye.ID</td>
+            <td>@uye.AD</td>
+            <td>@uye.SOYAD</td>
+            <td>@uye.MAIL</td>
+            <td>@uye.KULLANICIADI</td>
+            <td>@uye.SIFRE</td>
+            <td>@uye.TELEFON</td>
+            <td>@uye.OKUL</td>
+            <td><a href="/Uye/UyeSil/@uye.ID" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Uye/UyeGetir/@uye.ID" class="btn btn-success">Güncelle</a></td>
+            <td><a href="/Uye/UyeKitapGecmisi/@uye.ID" class="btn btn-success" style="background-color:cadetblue;border:none">Kitap Geçmişi</a></td>
+        </tr>
+    }
+</table>
+<br />
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+@*PagedListPaged=Alt tarafta oluşan sayfalama numaraları
+    (IPagedList)Model=Modelden gelen değerleri sayfa içerisinde listeleme
+    url.Action("Index",new{sayfa})=Sayfa değişkeninin değeri her bir defa url action olacak.
+    Alt tarafta oluşan tıklanan sayfa sayıları url oluyor.Tıklanan sayfa değerlerini Indexe gönder ve gönderilen sayfa değerine göre o sayfayı aç*@
+<a href="/Uye/UyeEkle/" class="btn btn-primary"> Yeni Üye Ekle </a>
+

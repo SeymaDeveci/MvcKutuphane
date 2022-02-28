@@ -1,0 +1,39 @@
+﻿@model MvcKutuphane.Models.Entity.TBLMESAJLAR
+@{
+    ViewBag.Title = "GidenMesajOku";
+    Layout = "~/Views/Shared/_LayoutPanelim.cshtml";
+}
+<html>
+<body class="hold-transition sidebar-mini">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                @Html.Action("Partial1")
+                <div class="col-md-9">
+                    <div class="card card-primary card-outline">
+                        <!-- /.card-header -->
+                        <div class="card-body p-0">
+                            <div class="mailbox-read-info">
+                                <h5 style="background-color:antiquewhite"><b>Mesaj Konusu:</b> @Html.TextBoxFor(o => o.KONU, new { @readonly = true, @style = "border: none; width:300px", @disabled = "true" })</h5>
+                                <h6 style="background-color:antiquewhite">
+                                    <b>Kime:</b> @Html.TextBoxFor(o => o.ALICI, new { @readonly = true, @style = "border: none", @disabled = "true" })
+                                    <span class="mailbox-read-time float-right">Tarih: @Html.TextBoxFor(o => o.TARİH, new { @readonly = true, @style = "border: none", @disabled = "true" })</span>
+                                </h6>
+                            </div>
+
+                            <!-- /.mailbox-controls -->
+                            <div class="mailbox-read-message">
+                                @Html.TextAreaFor(o => o.ICERİK, new { @class = "form-control form-control-full", @style = "height:300px", @readonly = true, @disabled = "true" })
+                            </div>
+                            <!-- /.mailbox-read-message -->
+                        </div>
+
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+

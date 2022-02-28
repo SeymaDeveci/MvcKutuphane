@@ -1,0 +1,27 @@
+﻿@model MvcKutuphane.Models.Entity.TBLDUYURULAR
+@{
+    ViewBag.Title = "YeniDuyuru";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Yeni Duyuru Ekle</h2>
+
+<form class="form-group" method="post">
+    <div style="margin-top:15px">
+        <label>Duyuru Kategorisi</label>
+        @Html.TextBoxFor(x => x.KATEGORI, new { @class = "form-control" })
+        @*@Html.ValidationMessageFor(x => x.KATEGORI, "", new { @style = "color:red" })*@ @*boş bir değer girilirse uyarı mesajı dösterecek*@
+    </div>
+    <div style="margin-top:15px">
+        <label>Duyuru İçeriği</label>
+        @Html.TextAreaFor(x => x.ICERİK, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Duyuru Tarihi</label>
+        @Html.TextBoxFor(x => x.TARIH, "{0:yyyy-MM-dd}", new { type = "date" })
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="Btn1">Duyuru Ekle</button>
+    </div>
+</form>
+
